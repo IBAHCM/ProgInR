@@ -4,8 +4,8 @@
 \alias{plot_populations}
 \title{Plot population(s) against time}
 \usage{
-plot_populations(populations, new.graph = TRUE, xlim = NA, ylim = NA,
-  lty = 1, col = NA, with.legend = TRUE)
+plot_populations(populations, new.graph = TRUE, ylim = NA, lty = 1,
+  col = NA, ...)
 }
 \arguments{
 \item{populations}{- data frame with columns corresponding to different population
@@ -13,15 +13,14 @@ segments and a 'time' column}
 
 \item{new.graph}{- (optionally) whether to start a new graph, default TRUE}
 
-\item{xlim}{- (optionally, for new graphs) the limits of the x axis, default min to max time}
-
 \item{ylim}{- (optionally, for new graphs) the limits of the y axis, default min to max pop size}
 
 \item{lty}{- (optionally) the line type for the graph, default 1}
 
-\item{col}{- (optionally) the colour for all lines, default all different}
+\item{col}{- (optionally) the colour for all lines - default 1:num.populations
+you can name these c(susceptibles="green", ...)}
 
-\item{with.legend}{- (optionally) whether to include the legend (TRUE or FALSE), default TRUE}
+\item{...}{- (optionally) any other arguments that plot and lines will both accept}
 }
 \description{
 Plot all of the populations in a data frame against time. One column must
@@ -31,8 +30,8 @@ column names.
 }
 \examples{
 
-df <- data.frame(time=0:100, grow=exp((0:100) / 10))
-plot_populations(df)
+df <- data.frame(time=0:100, grow=exp((0:100) / 10), die=exp(seq(10, 0, by = -0.1)))
+plot_populations(df, lty = 2, main = "A title")
 
 }
 
