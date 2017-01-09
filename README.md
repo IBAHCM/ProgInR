@@ -3,3 +3,5 @@
 Link for v1.0: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.234761.svg)](https://doi.org/10.5281/zenodo.234761)
 
 Link for v1.1: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.234800.svg)](https://doi.org/10.5281/zenodo.234800)
+
+Link for v1.2: [![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.234915.svg)](https://doi.org/10.5281/zenodo.234915)
