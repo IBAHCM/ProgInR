@@ -4,22 +4,27 @@
 \alias{run_simulation}
 \title{Run a simulation loop}
 \usage{
-run_simulation(step_function, latest.df, end.time, ...)
+run_simulation(step_function, latest.df, end.time, debug = FALSE, ...)
 }
 \arguments{
-\item{step_function}{- function to run a timestep (step_function()) which returns
-a list containing updated.pop with the updated population and
+\item{step_function}{- function to run a timestep (\code{step_function()})
+which returns a list containing updated.pop with the updated population and
 end.experiment which is TRUE if the experiment has ended, OR which just
 returns a data frame with the updated population}
 
-\item{latest.df}{- data frame with columns corresponding to function requirements}
+\item{latest.df}{- data frame with columns corresponding to function
+requirements}
 
 \item{end.time}{- end time of simulation}
 
-\item{...}{- any other arguments for step_function(), e.g. parameters or timestep}
+\item{debug}{- Do you want to print out a limited amount of debugging
+information about your code? - default FALSE}
+
+\item{...}{- any other arguments for \code{step_function()}, e.g. parameters
+or timestep}
 }
 \value{
-output of final step of simulation, including all of the time steps up to now
+data frame containing population history of simulation over time
 }
 \description{
 A generic function to run a simulation loop for a fixed period of time.
@@ -36,7 +41,7 @@ finished <- next.count == 0
 list(updated.pop=new.df, end.experiment=finished)
 }
 df <- data.frame(time=0, count=1)
-results <- run_simulation(growth, df, 100, growth.rate=0.1)
+results <- run_simulation(growth, df, 100, growth.rate=0.1, debug=TRUE)
 plot_populations(results)
 
 }

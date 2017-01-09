@@ -33,13 +33,14 @@ plot_populations <- function(populations, new.graph=TRUE,
   else
     stop("No time available")
 
+  # Sort out the line colours for the populations
   labels <- colnames(populations)
   if (is.na(col[1]))
     line.cols <- 1:length(labels)
   else
   {
-    if (all(labels(col)==1:length(labels)))
-      line.cols <- col
+    if (all(labels(col) == 1:length(col)))
+      line.cols <- rep(col, length.out = length(labels))
     else
     {
       line.cols <- c()
@@ -48,23 +49,40 @@ plot_populations <- function(populations, new.graph=TRUE,
     }
   }
 
+  # Sort out the line types for the populations
+  if (is.na(lty[1]))
+    line.ltys <- 1:length(labels)
+  else
+  {
+    if (all(labels(lty)==1:length(lty)))
+      line.ltys <- rep(lty, length.out = length(labels))
+    else
+    {
+      line.ltys <- c()
+      for (name in labels)
+        line.ltys <- c(line.ltys, lty[name])
+    }
+  }
+
+  # Sort out the y limits on the graph if need be
   if (is.na(ylim[1]))
     ylim <- c(0, max(rowSums(populations)))
 
+  # And now plot the graphs
   index <- 1
   for (label in labels)
   {
     this.pop <- populations[[label]]
     if (new.graph)
-    {
+    { # When it's a new plot, do labels and legends, etc.
       plot(time, this.pop,
            ylim=ylim, xlab='time', ylab='population size',
-           type='l', col=line.cols[index], lty=lty, ...)
-      legend("topright", legend=labels, lty=lty, col=line.cols)
+           type='l', col=line.cols[index], lty=line.ltys[index], ...)
+      legend("topright", legend=labels, lty=line.ltys, col=line.cols)
       new.graph <- FALSE
     }
-    else
-      lines(time, this.pop, col=line.cols[index], lty=lty, ...)
+    else # Otherwise just draw the lines
+      lines(time, this.pop, col=line.cols[index], lty=line.ltys[index], ...)
     index <- index + 1
   }
 }

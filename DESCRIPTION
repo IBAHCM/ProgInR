@@ -1,8 +1,8 @@
 Package: ProgInR
 Type: Package
 Title: Programming in R helper code
-Version: 1.1
-Date: 2017-01-08
+Version: 1.2
+Date: 2017-01-09
 Authors@R: person("Richard", "Reeve", email = "richard.reeve@glasgow.ac.uk",
                   role = c("aut", "cre"))
 Maintainer: Richard Reeve <richard.reeve@glasgow.ac.uk>

@@ -13,3 +13,21 @@ if (length(findGlobals(run_simulation, merge=FALSE)$variables) != 0)
   stop("Function run_simulation() may not use global variable(s): ",
        findGlobals(run_simulation, merge=FALSE)$variables)
 }
+
+if (length(findGlobals(cleanup_times, merge=FALSE)$variables) != 0)
+{
+  stop("Function cleanup_times() may not use global variable(s): ",
+       findGlobals(cleanup_times, merge=FALSE)$variables)
+}
+
+if (length(findGlobals(cleanup_timesteps, merge=FALSE)$variables) != 0)
+{
+  stop("Function cleanup_timesteps() may not use global variable(s): ",
+       findGlobals(cleanup_timesteps, merge=FALSE)$variables)
+}
+
+if (length(findGlobals(cleanup_events, merge=FALSE)$variables) != 0)
+{
+  stop("Function cleanup_events() may not use global variable(s): ",
+       findGlobals(cleanup_events, merge=FALSE)$variables)
+}
