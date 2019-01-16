@@ -64,11 +64,20 @@ run_simulation <- function(step_function, latest.df, end.time, debug=FALSE, ...)
     if (is.data.frame(data))
     { # We have an experiment that doesn't end, or can't determine when it does
       latest.df <- data
+      cat("step_function() returns a data frame.\n")
     }
     else # a list
     { # We have an experiment that can determine when it ends
+      cat("step_function() returns a list. Names of elements in list: ",
+          paste(names(data), collapse = ", "), "\n")
+      if (!("end.experiment" %in% names(data)) ||
+          !("updated.pop" %in% names(data)))
+        stop("Misnamed list elements returned from step_function(): ",
+             paste(names(data), collapse = " and "),
+             ", not updated.pop and end.experiment.")
       latest.df <- data$updated.pop
       ended <- data$end.experiment
+      cat("end.experiment returned from first run: ", ended, "\n")
     }
 
   }
@@ -85,10 +94,6 @@ run_simulation <- function(step_function, latest.df, end.time, debug=FALSE, ...)
     { # We have an experiment that can determine when it ends
       latest.df <- data$updated.pop
       ended <- data$end.experiment
-      if (debug && first.run)
-      {
-        cat("end.experiment returned from first run: ", ended, "\n")
-      }
     }
 
     if (debug)
