@@ -38,9 +38,10 @@
 run_simulation <- function(step_function, latest.df, end.time, debug=FALSE, ...)
 {
   # Check whether step_function uses global variables
-  if (length(findGlobals(step_function, merge=FALSE)$variables) > 0)
+  if (length(codetools::findGlobals(step_function, merge=FALSE)$variables) > 0)
     warning(paste("Function provided uses global variable(s):",
-                  paste(findGlobals(step_function, merge=FALSE)$variables,
+                  paste(codetools::findGlobals(step_function,
+                                               merge=FALSE)$variables,
                         collapse=", ")))
 
   # Collect and report debugging information to identify sources of errors
@@ -68,20 +69,36 @@ run_simulation <- function(step_function, latest.df, end.time, debug=FALSE, ...)
     }
     else # a list
     { # We have an experiment that can determine when it ends
-      cat("step_function() returns a list. Names of elements in list: ",
-          paste(names(data), collapse = ", "), "\n")
-      if (!("end.experiment" %in% names(data)) ||
-          !("updated.pop" %in% names(data)))
-        stop("Misnamed list elements returned from step_function(): ",
-             paste(names(data), collapse = " and "),
-             ", not updated.pop and end.experiment.")
+      cat("step_function() returns a list.\n")
+      list.names <- c("updated.pop", "end.experiment")
+      if (any(names(data) != list.names))
+      {
+        cat("Names of elements in list: ",
+            paste(names(data), collapse = ", "), "\n")
+        if (any(sort(names(data)) != sort(list.names)))
+          stop("Misnamed list elements returned from step_function(): ",
+               paste(names(data), collapse = " and "),
+               ", not updated.pop and end.experiment.")
+      }
       latest.df <- data$updated.pop
       ended <- data$end.experiment
       cat("end.experiment returned from first run: ", ended, "\n")
     }
 
+    cat("Population returned from first run: ",
+        paste(latest.df, collapse=", "), "\n")
+    ret.names <- colnames(latest.df)
+    if (any(ret.names != pop.names))
+    {
+      cat("Population names being used in output: ",
+          paste(ret.names, collapse=", "), "\n")
+      if (any(sort(ret.names) != sort(pop.names)))
+        stop("Mismatch in input and output population dataframe column names")
+      else
+        print("Input and output dataframe column names in different order")
+    }
   }
-  first.run <- TRUE
+
   while (keep.going)
   {
     data <- step_function(latest.df, ...)
@@ -98,23 +115,6 @@ run_simulation <- function(step_function, latest.df, end.time, debug=FALSE, ...)
 
     if (debug)
     {
-      if (first.run)
-      {
-        first.run <- FALSE
-        cat("Population returned from first run: ",
-            paste(latest.df, collapse=", "),
-            "\n")
-        ret.names <- colnames(latest.df)
-        if (any(ret.names != pop.names))
-        {
-          cat("Population names being used in output: ",
-              paste(ret.names, collapse=", "), "\n")
-          if (any(sort(ret.names) != sort(pop.names)))
-            stop("Mismatch in input and output population dataframe column names")
-          else
-            print("Input and output dataframe column names in different order")
-        }
-      }
       if (nrow(latest.df) != 1)
         cat("Output dataframe has ", nrow(latest.df), " rows\n")
       if (any(is.na(latest.df)))
