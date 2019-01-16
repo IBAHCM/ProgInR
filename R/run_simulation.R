@@ -4,9 +4,10 @@
 #' A generic function to run a simulation loop for a fixed period of time.
 
 #' @param step_function - function to run a timestep (\code{step_function()})
-#'   which returns a list containing updated.pop with the updated population and
-#'   end.experiment which is TRUE if the experiment has ended, OR which just
-#'   returns a data frame with the updated population
+#'   which returns a list containing elements \code{updated.pop} with the
+#'   updated population and \code{end.experiment} which is TRUE if the
+#'   experiment has ended (FALSE if not), OR which just returns a data frame
+#'   with the updated population
 #' @param latest.df - data frame with columns corresponding to function
 #'   requirements
 #' @param end.time - end time of simulation
