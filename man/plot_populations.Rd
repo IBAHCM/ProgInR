@@ -34,4 +34,3 @@ df <- data.frame(time=0:100, grow=exp((0:100) / 10), die=exp(seq(10, 0, by = -0.
 plot_populations(df, lty = 2, main = "A title")
 
 }
-

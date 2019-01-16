@@ -8,9 +8,10 @@ run_simulation(step_function, latest.df, end.time, debug = FALSE, ...)
 }
 \arguments{
 \item{step_function}{- function to run a timestep (\code{step_function()})
-which returns a list containing updated.pop with the updated population and
-end.experiment which is TRUE if the experiment has ended, OR which just
-returns a data frame with the updated population}
+which returns a list containing elements \code{updated.pop} with the
+updated population and \code{end.experiment} which is TRUE if the
+experiment has ended (FALSE if not), OR which just returns a data frame
+with the updated population}
 
 \item{latest.df}{- data frame with columns corresponding to function
 requirements}
@@ -45,4 +46,3 @@ results <- run_simulation(growth, df, 100, growth.rate=0.1, debug=TRUE)
 plot_populations(results)
 
 }
-

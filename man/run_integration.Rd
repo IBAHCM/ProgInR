@@ -35,4 +35,3 @@ vector of named parameters. It must return a list with two elements, the
 first of which is a vector of the derivatives of the population at pop_vec,
 and the second is an empty vector.
 }
-
