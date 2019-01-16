@@ -68,10 +68,10 @@ plot_populations <- function(populations, new.graph=TRUE,
   if (is.na(ylim[1]))
     ylim <- c(0, max(rowSums(populations)))
 
-  # And now plot the graphs
-  index <- 1
-  for (label in labels)
+  # And plot the individual columns against time
+  for (index in 1:length(labels))
   {
+    label <- labels[index]
     this.pop <- populations[[label]]
     if (new.graph)
     { # When it's a new plot, do labels and legends, etc.
@@ -83,6 +83,5 @@ plot_populations <- function(populations, new.graph=TRUE,
     }
     else # Otherwise just draw the lines
       lines(time, this.pop, col=line.cols[index], lty=line.ltys[index], ...)
-    index <- index + 1
   }
 }
