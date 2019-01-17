@@ -27,9 +27,10 @@
 run_integration <- function(deriv_function, populations, end.time,
                             timestep=1, debug=FALSE, ...)
 {
-  if (length(findGlobals(deriv_function, merge=FALSE)$variables) > 0)
+  if (length(codetools::findGlobals(deriv_function, merge=FALSE)$variables) > 0)
     warning(paste("Function provided uses global variable(s):",
-                  paste(findGlobals(deriv_function, merge=FALSE)$variables,
+                  paste(codetools::findGlobals(deriv_function,
+                                               merge=FALSE)$variables,
                         collapse=", ")))
   if (debug)
   {
@@ -56,7 +57,7 @@ run_integration <- function(deriv_function, populations, end.time,
   }
 
   # Now run ode, turn back into data frame, add times and return
-  matrix.populations <- ode(initial.populations, times,
+  matrix.populations <- deSolve::ode(initial.populations, times,
                             deriv_function, params)
   final.populations <- as.data.frame(matrix.populations)
   final.populations$time <- times
