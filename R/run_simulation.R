@@ -8,8 +8,8 @@
 #'   updated population and \code{end.experiment} which is TRUE if the
 #'   experiment has ended (FALSE if not), OR which just returns a data frame
 #'   with the updated population
-#' @param latest.df - data frame with columns corresponding to function
-#'   requirements
+#' @param initial.pop - initial population data frame with columns corresponding
+#'   to function requirements
 #' @param end.time - end time of simulation
 #' @param debug - Do you want to print out a limited amount of debugging
 #'   information about your code? - default FALSE
@@ -35,7 +35,7 @@
 #' results <- run_simulation(growth, df, 100, growth.rate=0.1, debug=TRUE)
 #' plot_populations(results)
 #'
-run_simulation <- function(step_function, latest.df, end.time, debug=FALSE, ...)
+run_simulation <- function(step_function, initial.pop, end.time, debug=FALSE, ...)
 {
   # Check whether step_function uses global variables
   if (length(codetools::findGlobals(step_function, merge=FALSE)$variables) > 0)
@@ -45,23 +45,21 @@ run_simulation <- function(step_function, latest.df, end.time, debug=FALSE, ...)
                         collapse=", ")))
 
   # Collect and report debugging information to identify sources of errors
-  pop.names <- colnames(latest.df)
+  pop.names <- colnames(initial.pop)
   if (debug)
   {
     cat(c("Population names being used: ",
           paste(pop.names, collapse=", "), "\n"))
-    if (nrow(latest.df) != 1)
-      warning("Input dataframe latest.df has ", nrow(latest.df), " rows")
+    if (nrow(initial.pop) != 1)
+      warning("Input dataframe initial.pop has ", nrow(initial.pop), " rows")
     cat(c("Parameter names being used: ",
           paste(names(c(...)), collapse=", "), "\n"))
   }
 
-  population.df <- latest.df
-  keep.going <- (latest.df$time < end.time)
-
-  if (debug)
+  keep.going <- (initial.pop$time < end.time)
+  if (debug && keep.going)
   {
-    data <- step_function(population.df, ...)
+    data <- step_function(initial.pop, ...)
     if (is.data.frame(data))
     { # We have an experiment that doesn't end, or can't determine when it does
       latest.df <- data
@@ -97,6 +95,11 @@ run_simulation <- function(step_function, latest.df, end.time, debug=FALSE, ...)
       else
         print("Input and output dataframe column names in different order")
     }
+    population.df <- rbind(initial.pop, latest.df)
+    keep.going <- (latest.df$time < end.time) && (!ended)
+  } else {
+    latest.df <- initial.pop
+    population.df <- initial.pop
   }
 
   while (keep.going)

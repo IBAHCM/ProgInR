@@ -4,7 +4,7 @@
 \alias{run_simulation}
 \title{Run a simulation loop}
 \usage{
-run_simulation(step_function, latest.df, end.time, debug = FALSE, ...)
+run_simulation(step_function, initial.pop, end.time, debug = FALSE, ...)
 }
 \arguments{
 \item{step_function}{- function to run a timestep (\code{step_function()})
@@ -13,8 +13,8 @@ updated population and \code{end.experiment} which is TRUE if the
 experiment has ended (FALSE if not), OR which just returns a data frame
 with the updated population}
 
-\item{latest.df}{- data frame with columns corresponding to function
-requirements}
+\item{initial.pop}{- initial population data frame with columns corresponding
+to function requirements}
 
 \item{end.time}{- end time of simulation}
 
