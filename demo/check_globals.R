@@ -2,10 +2,22 @@
 library(codetools)
 library(ProgInR)
 
+if (length(findGlobals(plot_simple, merge=FALSE)$variables) != 0)
+{
+  stop("Function plot_simple() may not use global variable(s): ",
+       findGlobals(plot_simple, merge=FALSE)$variables)
+}
+
 if (length(findGlobals(plot_populations, merge=FALSE)$variables) != 0)
 {
   stop("Function plot_populations() may not use global variable(s): ",
        findGlobals(plot_populations, merge=FALSE)$variables)
+}
+
+if (length(findGlobals(run_simple, merge=FALSE)$variables) != 0)
+{
+  stop("Function run_simple() may not use global variable(s): ",
+       findGlobals(run_simple, merge=FALSE)$variables)
 }
 
 if (length(findGlobals(run_simulation, merge=FALSE)$variables) != 0)
