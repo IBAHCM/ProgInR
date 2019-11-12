@@ -11,5 +11,5 @@ Description: This code provides some basic functionality to help the
 License: GPL (>= 3)
 Depends: R (>= 3.0)
 LazyData: TRUE
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.0
 Imports: codetools, deSolve

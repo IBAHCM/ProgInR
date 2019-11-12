@@ -4,8 +4,7 @@
 \alias{plot_simple}
 \title{Simplest code to plot population(s) against time}
 \usage{
-plot_simple(populations, new.graph = TRUE, xlim = NA, ylim = NA,
-  lty = 1)
+plot_simple(populations, new.graph = TRUE, xlim = NA, ylim = NA, lty = 1)
 }
 \description{
 A simple plot all of the populations in a data frame against time. One column

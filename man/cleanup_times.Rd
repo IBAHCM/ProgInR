@@ -6,9 +6,13 @@
 \alias{cleanup_timesteps}
 \title{Cleaning up data}
 \usage{
-cleanup_times(populations, are.events, timestep = 1,
-  end.time = max(populations$time), times = seq(from =
-  min(populations$time), to = end.time, by = timestep))
+cleanup_times(
+  populations,
+  are.events,
+  timestep = 1,
+  end.time = max(populations$time),
+  times = seq(from = min(populations$time), to = end.time, by = timestep)
+)
 
 cleanup_events(populations, ...)
 

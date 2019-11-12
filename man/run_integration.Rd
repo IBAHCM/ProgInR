@@ -4,8 +4,14 @@
 \alias{run_integration}
 \title{Run an integration over time}
 \usage{
-run_integration(deriv_function, populations, end.time, timestep = 1,
-  debug = FALSE, ...)
+run_integration(
+  deriv_function,
+  populations,
+  end.time,
+  timestep = 1,
+  debug = FALSE,
+  ...
+)
 }
 \arguments{
 \item{deriv_function}{Dunction to calculate derivative}

@@ -4,8 +4,15 @@
 \alias{plot_populations}
 \title{Plot population(s) against time}
 \usage{
-plot_populations(populations, new.graph = TRUE, ylim = NA, lty = 1,
-  col = NA, with.legend = TRUE, ...)
+plot_populations(
+  populations,
+  new.graph = TRUE,
+  ylim = NA,
+  lty = 1,
+  col = NA,
+  with.legend = TRUE,
+  ...
+)
 }
 \arguments{
 \item{populations}{Data frame with columns corresponding to different
