@@ -8,25 +8,25 @@ run_integration(deriv_function, populations, end.time, timestep = 1,
   debug = FALSE, ...)
 }
 \arguments{
-\item{deriv_function}{- function to calculate derivative}
+\item{deriv_function}{Dunction to calculate derivative}
 
-\item{populations}{- data frame with columns corresponding to function
+\item{populations}{Data frame with columns corresponding to function
 requirements}
 
-\item{end.time}{- end time of simulation}
+\item{end.time}{End time of simulation}
 
-\item{timestep}{- (optionally) record the state every timestep - default 1}
+\item{timestep}{(optionally) record the state every timestep - default 1}
 
-\item{debug}{- (optionally) Do you want to print out a limited amount of
+\item{debug}{(optionally) Do you want to print out a limited amount of
 debugging information about your code? - default FALSE}
 
-\item{...}{- other arguments for deriv_function, mostly parameters}
+\item{...}{Other arguments for deriv_function, mostly parameters}
 }
 \value{
-data frame containing population history of simulation over time
+Data frame containing population history of simulation over time
 }
 \description{
-A generic function to integrate a series of odes. Designed to
+A generic function to integrate a series of ODEs. Designed to
 have arguments compatible with other run_xxx() functions, rather than
 optimally designed for ode(). deriv_function must have three arguments (t,
 pop_vec, param_vec), where t is the time, pop_vec contains the current state

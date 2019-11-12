@@ -6,6 +6,6 @@
 \alias{ProgInR-package}
 \title{ProgInR}
 \description{
-This package provides some basic functionality to help BAHCM Programming in R
-students.
+This package provides some basic functionality to help BAHCM Reproducible
+Programming in R students.
 }
