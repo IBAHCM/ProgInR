@@ -6,24 +6,29 @@
 #' be used as different lines on the y-axis, with a legend denoting their
 #' column names.
 #'
-#' @param populations - data frame with columns corresponding to different population
-#'                   segments and a 'time' column
+#' @param populations - data frame with columns corresponding to different
+#'   population segments and a 'time' column
 #' @param new.graph - (optionally) whether to start a new graph, default TRUE
-#' @param ylim - (optionally, for new graphs) the limits of the y axis, default min to max pop size
+#' @param ylim - (optionally, for new graphs) the limits of the y axis,
+#'   default min to max pop size
 #' @param lty - (optionally) the line type for the graph, default 1
-#' @param col - (optionally) the colour for all lines - default 1:num.populations
-#'    you can name these c(susceptibles="green", ...)
-#' @param ... - (optionally) any other arguments that plot and lines will both accept
+#' @param col - (optionally) the colour for all lines,
+#'   default 1:num.populations - you can name these c(susceptibles="green", ...)
+#' @param with.legend - (optionally) whether to include the legend (TRUE or
+#'   FALSE), default TRUE
+#' @param ... - (optionally) any other arguments that plot and lines will both
+#'   accept
 #'
 #' @export
 #'
 #' @examples
 #'
-#' df <- data.frame(time=0:100, grow=exp((0:100) / 10), die=exp(seq(10, 0, by = -0.1)))
+#' df <- data.frame(time=0:100, grow=exp((0:100) / 10),
+#'                  die=exp(seq(10, 0, by = -0.1)))
 #' plot_populations(df, lty = 2, main = "A title")
 #'
 plot_populations <- function(populations, new.graph=TRUE,
-                             ylim=NA, lty=1, col=NA, ...)
+                             ylim=NA, lty=1, col=NA, with.legend=TRUE, ...)
 {
   if (any(colnames(populations)=="time"))
   {
@@ -68,7 +73,7 @@ plot_populations <- function(populations, new.graph=TRUE,
   if (is.na(ylim[1]))
     ylim <- c(0, max(rowSums(populations)))
 
-  # And plot the individual columns against time
+  # And now plot the graphs
   for (index in 1:length(labels))
   {
     label <- labels[index]
@@ -78,7 +83,8 @@ plot_populations <- function(populations, new.graph=TRUE,
       plot(time, this.pop,
            ylim=ylim, xlab='time', ylab='population size',
            type='l', col=line.cols[index], lty=line.ltys[index], ...)
-      legend("topright", legend=labels, lty=line.ltys, col=line.cols)
+      if (with.legend) # Plot the legend if desired
+        legend("topright", legend=labels, lty=line.ltys, col=line.cols)
       new.graph <- FALSE
     }
     else # Otherwise just draw the lines
