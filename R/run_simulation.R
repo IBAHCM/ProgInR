@@ -3,20 +3,20 @@
 #' @description
 #' A generic function to run a simulation loop for a fixed period of time.
 
-#' @param step_function - function to run a timestep (\code{step_function()})
+#' @param step_function Function to run a timestep (\code{step_function()})
 #'   which returns a list containing elements \code{updated.pop} with the
 #'   updated population and \code{end.experiment} which is TRUE if the
 #'   experiment has ended (FALSE if not), OR which just returns a data frame
 #'   with the updated population
-#' @param initial.pop - initial population data frame with columns corresponding
+#' @param initial.pop Initial population data frame with columns corresponding
 #'   to function requirements
-#' @param end.time - end time of simulation
-#' @param debug - Do you want to print out a limited amount of debugging
-#'   information about your code? - default FALSE
-#' @param ... - any other arguments for \code{step_function()}, e.g. parameters
-#'   or timestep
+#' @param end.time End time of simulation
+#' @param debug (optionally) do you want to print out a limited amount of
+#'   debugging information about your code? - default FALSE
+#' @param ... (optionally) any other arguments for \code{step_function()},
+#'   e.g. parameters or timestep
 #'
-#' @return data frame containing population history of simulation over time
+#' @return Data frame containing population history of simulation over time
 #'
 #' @export
 #'

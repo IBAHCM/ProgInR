@@ -1,13 +1,13 @@
 Package: ProgInR
 Type: Package
-Title: Programming in R helper code
-Version: 1.3
-Date: 2017-01-09
+Title: Reproducible Programming in R helper code
+Version: 1.4
+Date: 2019-11-12
 Authors@R: person("Richard", "Reeve", email = "richard.reeve@glasgow.ac.uk",
                   role = c("aut", "cre"))
 Maintainer: Richard Reeve <richard.reeve@glasgow.ac.uk>
 Description: This code provides some basic functionality to help the
-    BAHCM Programming in R students.
+    BAHCM Reproducible Programming in R students.
 License: GPL (>= 3)
 Depends: R (>= 3.0)
 LazyData: TRUE

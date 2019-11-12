@@ -6,17 +6,17 @@
 #' be used as different lines on the y-axis, with a legend denoting their
 #' column names.
 #'
-#' @param populations - data frame with columns corresponding to different
+#' @param populations Data frame with columns corresponding to different
 #'   population segments and a 'time' column
-#' @param new.graph - (optionally) whether to start a new graph, default TRUE
-#' @param ylim - (optionally, for new graphs) the limits of the y axis,
+#' @param new.graph (optionally) whether to start a new graph, default TRUE
+#' @param ylim (optionally, for new graphs) the limits of the y axis,
 #'   default min to max pop size
-#' @param lty - (optionally) the line type for the graph, default 1
-#' @param col - (optionally) the colour for all lines,
-#'   default 1:num.populations - you can name these c(susceptibles="green", ...)
-#' @param with.legend - (optionally) whether to include the legend (TRUE or
+#' @param lty (optionally) the line type for the graph, default 1
+#' @param col (optionally) the colour for all lines,
+#'   default 1:num.populations you can name these c(susceptibles="green", ...)
+#' @param with.legend (optionally) whether to include the legend (TRUE or
 #'   FALSE), default TRUE
-#' @param ... - (optionally) any other arguments that plot and lines will both
+#' @param ... (optionally) any other arguments that plot and lines will both
 #'   accept
 #'
 #' @export

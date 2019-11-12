@@ -1,6 +1,7 @@
 #' @title Run an integration over time
 #'
-#' @description A generic function to integrate a series of odes. Designed to
+#' @description
+#' A generic function to integrate a series of ODEs. Designed to
 #' have arguments compatible with other run_xxx() functions, rather than
 #' optimally designed for ode(). deriv_function must have three arguments (t,
 #' pop_vec, param_vec), where t is the time, pop_vec contains the current state
@@ -9,18 +10,16 @@
 #' first of which is a vector of the derivatives of the population at pop_vec,
 #' and the second is an empty vector.
 #'
-#' @param deriv_function - function to calculate derivative
-#' @param populations - data frame with columns corresponding to function
+#' @param deriv_function Dunction to calculate derivative
+#' @param populations Data frame with columns corresponding to function
 #'   requirements
-#' @param end.time - end time of simulation
-#' @param timestep - (optionally) record the state every timestep - default 1
-#' @param debug - (optionally) Do you want to print out a limited amount of
+#' @param end.time End time of simulation
+#' @param timestep (optionally) record the state every timestep - default 1
+#' @param debug (optionally) Do you want to print out a limited amount of
 #'   debugging information about your code? - default FALSE
-#' @param ... - other arguments for deriv_function, mostly parameters
+#' @param ... Other arguments for deriv_function, mostly parameters
 #'
-#' @return
-#'
-#' data frame containing population history of simulation over time
+#' @return Data frame containing population history of simulation over time
 #'
 #' @export
 #'
