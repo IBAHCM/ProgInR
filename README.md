@@ -11,7 +11,7 @@ install.packages("devtools")
 Then you can install the package itself:
 
 ```{r}
-devtools::install_github("boydorr/ProgInR")
+devtools::install_github("IBAHCM/ProgInR")
 ```
 
 Then we can run a piece of example code.
